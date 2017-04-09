@@ -1,0 +1,150 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Luna Api
+# during dev, should point to your local machine
+host: localhost:3010
+# basePath prefixes all resource paths 
+basePath: /api/v1
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /userProfiles:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: userProfiles
+    get:
+      tags: 
+      - userprofile
+      summary: "Gets all the user profiles"
+      description: "Returns list of user profiles to the caller"
+      responses:
+        200:
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/UserProfileResponse"
+          
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      tags:
+      - userprofile
+      summary: "Insert a new user profile"
+      description: "Insert a new user profile"
+      parameters:
+      - name: userProfile
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/UserProfileInput"
+      responses:
+        201:
+          description: "Success"
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/UserProfileResponse"
+        405:
+          description: "Invalid input"
+          
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /userProfiles/{id}:
+    get:
+      tags:
+      - userprofile
+      summary: "Gets a user profile secified by the id"
+      description: "Returns the requested user profile"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: "Success"
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/UserProfileResponse"
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "User not found"
+          
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  UserProfileResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      email:
+        type: string
+      displayName:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      description:
+        type: string
+      picture:
+        type: string
+      fbid:
+        type: string
+      created:
+        type: string
+      devices:
+        type: array
+        items:
+          type: string
+  UserProfileInput:
+    type: object
+    properties:
+      email:
+        type: string
+      displayName:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      description:
+        type: string
+      picture:
+        type: string
+      fbid:
+        type: string
+      devices:
+        type: array
+        items:
+          type: string
+        
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
