@@ -31,7 +31,7 @@ paths:
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/UserProfileResponse"
+            $ref: "#/definitions/UserProfile"
           
         # responses may fall through to errors
         default:
@@ -48,13 +48,13 @@ paths:
         in: body
         required: true
         schema:
-          $ref: "#/definitions/UserProfileInput"
+          $ref: "#/definitions/UserProfile"
       responses:
         201:
           description: "Success"
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/UserProfileResponse"
+            $ref: "#/definitions/UserProfile"
         405:
           description: "Invalid input"
           
@@ -80,7 +80,7 @@ paths:
           description: "Success"
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/UserProfileResponse"
+            $ref: "#/definitions/UserProfile"
         400:
           description: "Invalid id supplied"
         404:
@@ -95,7 +95,7 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  UserProfileResponse:
+  UserProfile:
     type: object
     properties:
       id:
@@ -120,28 +120,6 @@ definitions:
         type: array
         items:
           type: string
-  UserProfileInput:
-    type: object
-    properties:
-      email:
-        type: string
-      displayName:
-        type: string
-      firstName:
-        type: string
-      lastName:
-        type: string
-      description:
-        type: string
-      picture:
-        type: string
-      fbid:
-        type: string
-      devices:
-        type: array
-        items:
-          type: string
-        
   ErrorResponse:
     required:
       - message
