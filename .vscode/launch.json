@@ -11,7 +11,7 @@
             "program": "${workspaceRoot}/server.js",
             "env": {
 				"NODE_ENV": "dev",
-				"PORT": "80"
+				"PORT": "3010"
 			}
         },
         {
