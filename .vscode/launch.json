@@ -10,7 +10,8 @@
             "name": "Launch Program",
             "program": "${workspaceRoot}/server.js",
             "env": {
-				"NODE_ENV": "dev",
+				"CASSANDRA_HOSTS": "127.0.0.1",
+                "CASSANDRA_PORT": "9042",
 				"PORT": "3010"
 			}
         },
