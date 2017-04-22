@@ -12,7 +12,8 @@
             "env": {
 				"CASSANDRA_HOSTS": "127.0.0.1",
                 "CASSANDRA_PORT": "9042",
-				"PORT": "3010"
+				"PORT": "3010",
+                "NODE_ENV": "dev"
 			}
         },
         {
