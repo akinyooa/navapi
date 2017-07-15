@@ -13,10 +13,12 @@ app.engine('html', require('ejs').renderFile);
 
 var models = require('./lib/models/models');
 var userProfiles = require('./lib/routes/userProfiles');
+var suggestions = require('./lib/routes/suggestions');
 
 app.use('/swagger', express.static(path.join(__dirname, 'public')));
 app.use('/swagger', express.static(path.join(__dirname, ('api/swagger'))));
 app.use('/api/v1/', userProfiles);
+app.use('/api/v1/', suggestions);
 
 app.get('/swagger', function (request, response) {
     response.render(path.join(__dirname, '/public/index'), { yaml: process.env.NODE_ENV == "dev" ? "/swagger/swagger.dev.yaml" : "/swagger/swagger.yaml" });

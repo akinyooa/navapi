@@ -1,0 +1,254 @@
+= Luna Api
+
+
+[[_overview]]
+== Overview
+
+=== Version information
+[%hardbreaks]
+__Version__ : 0.0.1
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : ec2-35-176-19-95.eu-west-2.compute.amazonaws.com
+__BasePath__ : /api/v1
+__Schemes__ : HTTP, HTTPS
+
+
+=== Consumes
+
+* `application/json`
+
+
+=== Produces
+
+* `application/json`
+
+
+
+
+[[_paths]]
+== Paths
+
+[[_userprofiles_post]]
+=== Insert a new user profile
+....
+POST /userProfiles
+....
+
+
+==== Description
+Insert a new user profile
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Body**|**userProfile** +
+__required__|<<_userprofile,UserProfile>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|OK|<<_userprofile,UserProfile>>
+|**405**|Invalid input|No Content
+|**default**|Error|<<_errorresponse,ErrorResponse>>
+|===
+
+
+==== Tags
+
+* userprofile
+
+
+[[_userprofiles_get]]
+=== Gets all the user profiles
+....
+GET /userProfiles
+....
+
+
+==== Description
+Returns list of user profiles to the caller
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userprofile,UserProfile>>
+|**default**|Error|<<_errorresponse,ErrorResponse>>
+|===
+
+
+==== Tags
+
+* userprofile
+
+
+[[_userprofiles_put]]
+=== Update a user specified by the id
+....
+PUT /userProfiles
+....
+
+
+==== Description
+Update a user specified by the id
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Body**|**userProfile** +
+__required__|<<_userprofile,UserProfile>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userprofile,UserProfile>>
+|**default**|Error|<<_errorresponse,ErrorResponse>>
+|===
+
+
+==== Tags
+
+* userprofile
+
+
+[[_userprofiles_id_get]]
+=== Gets a user profile secified by the id
+....
+GET /userProfiles/{id}
+....
+
+
+==== Description
+Returns the requested user profile
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Path**|**id** +
+__required__|string (uuid)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userprofile,UserProfile>>
+|**400**|Invalid id supplied|No Content
+|**404**|User not found|No Content
+|**default**|Error|<<_errorresponse,ErrorResponse>>
+|===
+
+
+==== Tags
+
+* userprofile
+
+
+[[_userprofiles_id_delete]]
+=== Deletes a user specified by the id
+....
+DELETE /userProfiles/{id}
+....
+
+
+==== Description
+Deletes a user specified by the id
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Path**|**id** +
+__required__|string (uuid)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**default**|Error|<<_errorresponse,ErrorResponse>>
+|===
+
+
+==== Tags
+
+* userprofile
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_errorresponse]]
+=== ErrorResponse
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**message** +
+__required__|string
+|===
+
+
+[[_userprofile]]
+=== UserProfile
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**created** +
+__optional__|Timestamp for when the user record was created|string
+|**description** +
+__optional__|Optional field for user's summary of themselves|string
+|**devices** +
+__optional__|List of devices used by the user|< string > array
+|**displayName** +
+__optional__|Friendly display name as chosen by the user|string
+|**email** +
+__optional__|Email address of the user|string
+|**fbid** +
+__optional__|user's facebook Id|string
+|**firstName** +
+__optional__|Users' first name|string
+|**id** +
+__optional__|Unique identifier for a user|string
+|**lastName** +
+__optional__|User's last name|string
+|**picture** +
+__optional__|URL for user's picture|string
+|===
+
+
+
+
+

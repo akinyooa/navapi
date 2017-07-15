@@ -17,6 +17,9 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+tags:
+  - name: userprofile
+    description: User profile resource
 paths:
   /userProfiles:
     # binds a127 app logic to a route
