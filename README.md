@@ -21,3 +21,5 @@ In order to use swagger run:
 * npm install -g swagger
 * browse to http://localhost:3010/swagger to test API
 * to edit API documentation run swagger project edit
+
+Manage node version - http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html
