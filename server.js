@@ -2,11 +2,12 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 80;
+var allowSite = process.env.NODE_ENV == "dev" ? "http://localhost:3000" : "http://ec2-35-176-19-95.eu-west-2.compute.amazonaws.com:8080/";
 
 var app = express();
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000, http://ec2-35-176-19-95.eu-west-2.compute.amazonaws.com:8080/");
+    res.header("Access-Control-Allow-Origin", allowSite);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
